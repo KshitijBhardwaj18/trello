@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import connectDB from './config/db';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import authRoutes from "./routes/authRoutes"
 
 
 
@@ -17,6 +18,11 @@ app.use(express.json());
 app.get('/', (req: Request, res: Response) => {
   res.status(200).json({ msg: 'Server is running' });
 });
+
+app.use('/api/auth', authRoutes);
+
+
+
 
 
 
