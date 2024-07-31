@@ -1,13 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import User, { IUser } from '../models/User';
-import mongoose from 'mongoose';
 
-interface AuthRequest extends Request {
-  user?: IUser & mongoose.Document;
-}
-
-const authMiddleware = async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
+const authMiddleware = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   const authHeader = req.header('Authorization');
   if (!authHeader) {
     res.status(401).json({ msg: 'No token, authorization denied' });
